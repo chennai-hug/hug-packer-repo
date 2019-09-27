@@ -1,0 +1,26 @@
+version: 0.2
+
+env:
+  variables:
+    packer_version: "1.4.3"
+        
+phases:
+  install:
+    commands:
+      - echo Installing Packer
+      - curl -sSLf -o /tmp/packer.zip https://releases.hashicorp.com/packer/${packer_version}/packer_${packer_version}_linux_amd64.zip
+      - unzip -q /tmp/packer.zip -d /usr/local/bin
+      - chmod +x /usr/local/bin/packer
+      - apt-get update
+  pre_build:
+    commands:
+      - echo Checking Packer and AWS CLI versions
+      - packer version
+      - aws --version
+      - echo Configuring AWS CLI options
+      - aws configure set default.region us-east-1
+      - aws configure set default.output json
+  build:
+    commands:
+      - packer build -debug hug-packer-single-aws-builder.json
+

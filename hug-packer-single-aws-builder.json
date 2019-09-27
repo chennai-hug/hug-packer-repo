@@ -1,0 +1,51 @@
+{
+    "variables": {
+        "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
+        "aws_secret_key": "{{env `AWS_SECRET_ACCESS_KEY`}}",
+        "pkr_ami_version": "{{env `PACKER_AMI_VERSION`}}"
+    },
+
+    "builders": [{
+        "type": "amazon-ebs",
+        "name": "packer-demo-centos75",
+        "ami_regions": [
+        "us-east-1"
+        ],
+        "access_key": "{{user `aws_access_key`}}",
+        "secret_key": "{{user `aws_secret_key`}}",
+        "instance_type": "t2.medium",
+        "region": "us-east-1",
+        "subnet_id": "subnet-6f35060b",
+        "vpc_id": "vpc-6b51a910",
+        "ami_name": "hug-packer-demo-centos75-x86_64",
+        "ami_users": ["224626395331"],
+	    "associate_public_ip_address": true,
+        "source_ami_filter": {
+            "filters": {
+              "virtualization-type": "hvm",
+              "name": "x86_64-CentOS_7-base-ami-master-patch-2019-08-19-2213",
+              "root-device-type": "ebs"
+            },
+            "owners": ["374168611083"],
+            "most_recent": true
+        },
+        "force_deregister": true,
+        "force_delete_snapshot": true,
+        "ssh_username": "centos",
+        "tags": {
+            "Name": "HUG Packer Demo AMI Instance",
+            "Source AMI ID": "{{ .SourceAMI }}",
+            "Version": "{{user `pkr_ami_version`}}"
+        }
+    }],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "echo 'Setting the timezone to EST/EDT time'",
+		"sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime",
+                "echo 'All Done'"
+            ]
+        }
+    ]
+}
