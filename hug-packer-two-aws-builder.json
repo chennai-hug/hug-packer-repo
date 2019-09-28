@@ -76,6 +76,7 @@
             "only": ["packer-demo-ubuntu1604"],
             "inline": [
                 "echo 'Install and start nginx'",
+                "sudo apt-get update -y",
                 "sudo apt-get install nginx -y",
                 "sudo systemctl start nginx",
                 "echo 'Nginx installed on ubuntu'"
