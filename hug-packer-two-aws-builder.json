@@ -65,27 +65,31 @@
     }],
     "provisioners": [
         {
-            "name": "ubuntu",
+            "name": "timezone",
             "type": "shell",
             "inline": [
                 "echo 'Setting the timezone to EST/EDT time'",
-                "sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime",
+                "sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime"
+            ]
+        },
+        {
+            "name": "ubuntu",
+            "type": "shell",
+            "inline": [
                 "echo 'Install and start nginx'",
                 "sudo apt-get install nginx -y",
                 "sudo systemctl start nginx",
-                "echo 'All Done'"
+                "echo 'Nginx installed on ubuntu'"
             ]
         },
         {
             "name": "centos",
             "type": "shell",
             "inline": [
-                "echo 'Setting the timezone to EST/EDT time'",
-                "sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime",
                 "echo 'Install and start nginx'",
                 "sudo yum install nginx -y",
                 "sudo service nginx start",
-                "echo 'All Done'"
+                 "echo 'Nginx installed on centos'"
             ]
         }
     ]
