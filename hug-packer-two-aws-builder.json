@@ -65,7 +65,6 @@
     }],
     "provisioners": [
         {
-            "name": "timezone",
             "type": "shell",
             "inline": [
                 "echo 'Setting the timezone to EST/EDT time'",
@@ -73,7 +72,6 @@
             ]
         },
         {
-            "name": "ubuntu",
             "type": "shell",
             "only": ["packer-demo-ubuntu1604"],
             "inline": [
@@ -84,7 +82,6 @@
             ]
         },
         {
-            "name": "centos",
             "type": "shell",
             "only": ["packer-demo-centos75"],
             "inline": [
