@@ -53,7 +53,7 @@
         "ami_name": "hug-packer-demo-ubuntu1604-x86_64",
         "ami_users": ["224626395331"],
         "associate_public_ip_address": true,
-        "source_ami": "ami-0737c211fb24323ca",
+        "source_ami": "ami-0cfee17793b08a293",
         "force_deregister": true,
         "force_delete_snapshot": true,
         "ssh_username": "ubuntu",
