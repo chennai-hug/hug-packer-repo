@@ -75,6 +75,7 @@
         {
             "name": "ubuntu",
             "type": "shell",
+            "only": ["packer-demo-ubuntu1604"],
             "inline": [
                 "echo 'Install and start nginx'",
                 "sudo apt-get install nginx -y",
@@ -85,6 +86,7 @@
         {
             "name": "centos",
             "type": "shell",
+            "only": ["packer-demo-centos75"],
             "inline": [
                 "echo 'Install and start nginx'",
                 "sudo yum install nginx -y",
