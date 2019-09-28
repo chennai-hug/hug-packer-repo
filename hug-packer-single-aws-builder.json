@@ -44,6 +44,9 @@
             "inline": [
                 "echo 'Setting the timezone to EST/EDT time'",
 		"sudo ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime",
+		"echo 'Install and start nginx',
+		"sudo yum install nginx -y",
+		"sudo service nginx start",
                 "echo 'All Done'"
             ]
         }
